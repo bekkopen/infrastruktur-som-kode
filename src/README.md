@@ -1,5 +1,5 @@
-Sammenligning av konfigurasjonssytemer
---------------------------------------
+Sammenligning av konfigurasjonssystemer
+---------------------------------------
 
 * [Puppet][p]
 * [Chef][c]
