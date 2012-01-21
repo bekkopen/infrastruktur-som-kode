@@ -34,6 +34,15 @@
         font-size: 1.1em;
       }
 
+      ul.years {
+        position: relative;
+      }
+
+      ul.years .year {
+        left: 5em;
+        position: absolute;
+      }
+
 
     </style>
   </head>
@@ -195,43 +204,21 @@ file { "/etc/vim/vimrc":
 
       <article>
         <h3>
-          Deklarative konfigurasjonsverkt&oslash;y
+          Implementasjoner av deklarativ konfigurasjonsstyring
         </h3>
-        <ul class="build">
+        <ul class="years">
           <li>
-            CFEngine (1993)
-            <ul>
-              <li>
-                F&oslash;rste deklarative konfigurasjonsverkt&oslash;y
-              </li>
-              <li>
-                Lav-niv&aring;
-              </li>
-            </ul>
-          </li>
+            CFEngine <span class="year">1993</span>
           <li>
-            Puppet (2005)
-            <ul>
-              <li>
-                Skriver &oslash;nsket konfigurasjon i eget DSL
-              </li>
-              <li>
-                Lettvekt. Ingen avhengigheter for Puppet server.
-              </li>
-            </ul>
-          </li>
+            Bcfg2 <span class="year">XXXX</span>
           <li>
-            Chef (2008)
-            <ul>
-              <li>
-                En del tyngre. Krever CouchDB, Solr, RabbitMQ for
-                Chef server.
-              </li>
-              <li>
-                Skriver &oslash;nsket konfigurasjon i Ruby
-              </li>              
-            </ul>
-          </li>
+            Puppet <span class="year">2005</span>
+          <li>
+            Chef <span class="year">2008</span>
+          <li>
+            Salt <span class="year">2011</span>
+          <li>
+            Cdist <span class="year">2011</span>
         </ul>
       </article>
 
