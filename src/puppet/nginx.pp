@@ -1,31 +1,14 @@
-$hostname = "puppet.uggedal.com"
-$root = "/var/www/${hostname}"
+include nginx
 
-package { "nginx":
-  ensure => present
-}
-
-service { "nginx":
-  ensure => running,
-  enable => true,
-  require => Package["nginx"],
+nginx::site { "puppet.uggedal.com":
+  root => "/var/www/puppet",
 }
 
 file {
-  "/etc/nginx/sites-available/${hostname}.conf":
-    content => template("vhost.conf.erb"),
-    notify => Service["nginx"];
-
-  "/etc/nginx/sites-enabled/${hostname}.conf":
-    ensure => link,
-    target => "/etc/nginx/sites-available/${hostname}.conf",
-    require => File["/etc/nginx/sites-available/${hostname}.conf"],
-    notify => Service["nginx"];
-
   "${root}":
     ensure => directory;
 
   "${root}/index.html":
-    source => "index.html",
+    source => "puppet:///modules/nginx/index.html",
     require => File[$root];
 }
