@@ -76,7 +76,6 @@ Eivind Uggedal
 .middle.center
 
 # Jobber med drift? (eller devops)
-
 TODO: update questions to fit audience
 
 ---
@@ -84,24 +83,28 @@ TODO: update questions to fit audience
 .middle.center
 
 # Har tilgang til produksjon?
+TODO: update questions to fit audience
 
 ---
 
 .middle.center
 
 # Deployer til skyen?
+TODO: update questions to fit audience
 
 ---
 
 .middle.center
 
 # Har noen gang sagt det funker <strike>på min maskin</strike>. <strike>QA</strike>. Test?
+TODO: update questions to fit audience
 
 ---
 
 .middle.center
 
 # Har du rot i miljøene dine?
+TODO: update questions to fit audience
 
 ---
 
@@ -118,7 +121,55 @@ Styrer konfigurasjon av rundt 10 servere for blant annet
 <a href="http://wasitup.com">wasitup.com</a> samt
 MacBookPro/Air med Puppet.
 
+TODO: Update background
 
+---
+
+.middle.center
+
+# TODO: Utdyping av konfigurasjon som kode f&oslash;lger
+
+
+
+
+
+---
+
+.cols.two
+
+# Deklarativ konfigurasjonsstyring
+
+* Deklarativ fremfor imperativ
+* Gjenskape et milj&oslash; fra forskjellige utgangspunkt
+
+<div class="col">
+Imperativt for Debian:
+
+    .bash
+    apt-get install vim
+
+    echo "set nocp" >> /etc/vim/vimrc
+
+Imperativt for RedHat:
+
+    .bash
+    yum install vim
+
+    echo "set nocp" >> /etc/vim/vimrc
+</div>
+
+<div class="col">
+Deklarativt uavhengig av OS:
+
+    .ruby
+    package { "vim":
+      ensure => present,
+    }
+
+    file { "/etc/vim/vimrc":
+      content => "set nocp",
+    }
+</div>
 
 
 
