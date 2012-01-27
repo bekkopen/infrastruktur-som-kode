@@ -32,6 +32,26 @@
       .source::before {
         content: "Kilde: ";
       }
+
+      table {
+        border-collapse: collapse;
+      }
+
+      th {
+        color: rgba(255, 255, 255, .5);
+        font-weight: normal;
+        text-align: left;
+      }
+
+      td,
+      th {
+        padding: 5px 10px;
+        vertical-align: top;
+      }
+
+      td.has::after {
+        content: "✓";
+      }
     </style>
   </head>
   <body>
@@ -170,6 +190,223 @@ Deklarativt uavhengig av OS:
       content => "set nocp",
     }
 </div>
+
+---
+
+# Implementasjoner av deklarativ konfigurasjonsstyring
+
+<table>
+  <tr>
+    <th>
+      &nbsp;
+    <th>
+      Utgitt
+    <th>
+      Spr&aring;k
+  <tr>
+    <td>
+      CFEngine
+    <td>
+      1993
+    <td>
+      Lav-niv&aring; DSL
+  <tr>
+    <td>
+      LCFG
+    <td>
+      1994
+    <td>
+      XML
+  <tr>
+    <td>
+      Bcfg2
+    <td>
+      2004
+    <td>
+      XML
+  <tr>
+    <td>
+      Puppet
+    <td>
+      2005
+    <td>
+      DSL
+  <tr>
+    <td>
+      Chef
+    <td>
+      2009
+    <td>
+      Ruby
+  <tr>
+    <td>
+      Salt
+    <td>
+      2011
+    <td>
+      YAML med Jinja templating
+  <tr>
+    <td>
+      cdist
+    <td>
+      2011
+    <td>
+      POSIX Shell
+  <tr>
+    <td>
+      Pallet
+    <td>
+      2011
+    <td>
+      Clojure
+</table>
+
+---
+
+# Sammenligninger av noen implementasjoner
+
+<table>
+  <tr>
+    <th>
+      &nbsp;
+    <th>
+      Puppet
+    <th>
+      Chef
+    <th>
+      Salt
+    <th>
+      Cdist
+  <tr>
+    <td>
+      Klient/tjener
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+  <tr>
+    <td>
+      Pull
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+    <td>
+      &nbsp;
+    <td>
+      &nbsp;
+  <tr>
+    <td>
+      Push
+    <td>
+      &nbsp;
+    <td>
+      &nbsp;
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+  <tr>
+    <td>
+      Lokal modus
+    <td class="has">
+      &nbsp;
+    <td class="has">
+      &nbsp;
+    <td>
+      &nbsp;
+    <td>
+      &nbsp;
+  <tr>
+    <td>
+      Impl. spr&aring;k
+    <td>
+      Ruby
+    <td>
+      Ruby
+    <td>
+      Python
+    <td>
+      Python/sh
+  <tr>
+    <td>
+      Bruksspr&aring;k
+    <td>
+      DSL/Ruby
+    <td>
+      Ruby
+    <td>
+      YAML+Jinja/Python
+    <td>
+      sh
+  <tr>
+    <td>
+      Avhengigheter klient
+    <td>
+      Ruby, Puppet, Facter
+    <td>
+      Ruby, Chef-client, Ohai
+    <td>
+      Python, Salt, &Oslash;MQ
+    <td>
+      ssh, sh
+  <tr>
+    <td>
+      Avhengigheter tjener
+    <td>
+      Ruby, Puppetmaster, Rails, (database)
+    <td>
+      Ruby, Chef-server, Merb, Thin, Java, Solr, RabbitMQ
+    <td>
+      Python, Salt, &Oslash;MQ
+    <td>
+      Python, ssh, sh
+  <tr>
+    <td>
+      Utbredelse
+    <td>
+      Stor
+    <td>
+      Stor
+    <td>
+      Liten
+    <td>
+      Nisje
+</table>
+
+---
+
+# Native pakker
+
+TODO: complete
+
+Flytte kompleksitet fra konfigurasjonsstyringsverkt&oslash;y til
+pakkesystemer (avhengighetsgraf,
+enkel avinstallasjon og oppgradering, ...)
+
+deb/rpm/ebuild/pkgsrc/pacman etc
+
+FPM
+
+---
+
+# Testing av konfigurasjon
+
+TODO: complete
+
+
+
+
+
+
+
+
+
+
 
 
 

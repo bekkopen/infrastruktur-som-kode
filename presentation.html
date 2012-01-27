@@ -47,6 +47,11 @@
         background: #8f5;
       }
 
+      td,
+      th {
+        padding: 5px 10px;
+        vertical-align: top;
+      }
 
     </style>
   </head>
@@ -86,169 +91,6 @@
         </div>
       </article>
       
-
-
-      <article>
-        <h3>
-          Implementasjoner av deklarativ konfigurasjonsstyring
-        </h3>
-        <ul class="years">
-          <li>
-            CFEngine <span class="year">1993</span>
-          <li>
-            Bcfg2 <span class="year">XXXX</span>
-          <li>
-            Puppet <span class="year">2005</span>
-          <li>
-            Chef <span class="year">2008</span>
-          <li>
-            Salt <span class="year">2011</span>
-          <li>
-            Cdist <span class="year">2011</span>
-        </ul>
-      </article>
-
-      <article class="smaller">
-        <h3>
-          Sammenligninger av noen implementasjoner
-        </h3>
-        <table>
-          <tr>
-            <th>
-              &nbsp;
-            <th>
-              Puppet
-            <th>
-              Chef
-            <th>
-              Salt
-            <th>
-              Cdist
-          <tr>
-            <td>
-              Klient/tjener
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-          <tr>
-            <td>
-              Pull
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-            <td>
-              &nbsp;
-            <td>
-              &nbsp;
-          <tr>
-            <td>
-              Push
-            <td>
-              &nbsp;
-            <td>
-              &nbsp;
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-          <tr>
-            <td>
-              Lokal modus
-            <td class="has">
-              &nbsp;
-            <td class="has">
-              &nbsp;
-            <td>
-              &nbsp;
-            <td>
-              &nbsp;
-          <tr>
-            <td>
-              Impl. spr&aring;k
-            <td>
-              Ruby
-            <td>
-              Ruby
-            <td>
-              Python
-            <td>
-              Python/sh
-          <tr>
-            <td>
-              Bruksspr&aring;k
-            <td>
-              DSL/Ruby
-            <td>
-              Ruby
-            <td>
-              YAML+Jinja/Python
-            <td>
-              sh
-          <tr>
-            <td>
-              Avhengigheter klient
-            <td>
-              Ruby, Puppet, Facter
-            <td>
-              Ruby, Chef-client, Ohai
-            <td>
-              Python, Salt, &Oslash;MQ
-            <td>
-              ssh, sh
-          <tr>
-            <td>
-              Avhengigheter tjener
-            <td>
-              Ruby, Puppetmaster, Rails, (database)
-            <td>
-              Ruby, Chef-server, Merb, Thin, Java, Solr, RabbitMQ
-            <td>
-              Python, Salt, &Oslash;MQ
-            <td>
-              Python, ssh, sh
-          <tr>
-            <td>
-              Utbredelse
-            <td>
-              Stor
-            <td>
-              Stor
-            <td>
-              Liten
-            <td>
-              Nisje
-        </table>
-      </article>
-
-
-      <article>
-        <h3>
-          Native pakker
-        </h3>
-        <p>
-          Flytte kompleksitet fra konfigurasjonsstyringsverkt&oslash;y til
-          pakkesystemer (avhengighetsgraf,
-          enkel avinstallasjon og oppgradering, ...)
-        </p>
-        <p>
-          deb/rpm/ebuild/pkgsrc/pacman etc
-        </p>
-        <p>
-          FPM
-        </p>
-      </article>
-
-      <article>
-        <h3>
-          Testing
-        </h3>
-      </article>
 
       <article>
         <h1>
