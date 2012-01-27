@@ -1,0 +1,3 @@
+[submodule "remark-bekk"]
+	path = remark-bekk
+	url = git://github.com/kjbekkelund/remark-bekk.git
