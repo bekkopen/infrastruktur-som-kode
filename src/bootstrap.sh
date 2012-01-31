@@ -8,6 +8,6 @@ apt-get dist-upgrade -y
 
 apt-get install git -y
 
-if [ -d infrastruktur-som-kode ]; then
+if [ ! -d "$HOME/infrastruktur-som-kode" ]; then
   git clone git://github.com/bekkopen/infrastruktur-som-kode.git
 fi
