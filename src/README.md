@@ -20,3 +20,9 @@ Usecase
     - `hostname`
     - `root`
 3. Plasser en index.html fil med innhold i `root`.
+
+
+Bootstrap
+---------
+
+    wget -O- https://git.io/bootstrap | sh
