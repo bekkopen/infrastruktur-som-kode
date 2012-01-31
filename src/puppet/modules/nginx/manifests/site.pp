@@ -4,6 +4,7 @@ define nginx::site($root) {
   file {
     "/etc/nginx/sites-available/${hostname}.conf":
       content => template("nginx/site.conf.erb"),
+      require => Package["nginx"],
       notify => Service["nginx"];
 
     "/etc/nginx/sites-enabled/${hostname}.conf":
