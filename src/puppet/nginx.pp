@@ -1,11 +1,13 @@
+$root = "/var/www/puppet"
+
 include nginx
 
 nginx::site { "puppet.uggedal.com":
-  root => "/var/www/puppet",
+  root => $root,
 }
 
 file {
-  "${root}":
+  $root:
     ensure => directory;
 
   "${root}/index.html":
