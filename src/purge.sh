@@ -4,4 +4,4 @@ set -e
 
 apt-get purge nginx
 
-rm -rf /etc/nginx /var/www/*
+rm -rf /etc/nginx /var/www

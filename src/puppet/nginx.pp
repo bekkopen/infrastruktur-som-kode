@@ -1,4 +1,4 @@
-$root = "/var/www/puppet"
+$root = "/var/www"
 
 include nginx
 
