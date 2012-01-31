@@ -25,4 +25,4 @@ Usecase
 Bootstrap
 ---------
 
-    wget -O- https://git.io/bootstrap | sh
+    wget -O- http://git.io/bootstrap | sh
