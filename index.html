@@ -130,14 +130,78 @@ Utvikler med mye erfaring fra drift. Siste par &aring;rene utviklet og automatis
 
 ---
 
-.middle.center
-
 # Agenda
 
 * Infrastruktur som kode (Historisk blikk, Definisjon, Hvorfor?)
 * Deklarativ konfigurasjonsstyring (Definisjon, Ulike alternativer, Orkestrering og Testing)
 * En praktisk demonstrasjon 
 
+---
+
+## Historie
+
+TODO: Timeline
+
+1. Manuell
+2. Scripting
+3. Fildistribuering
+4. Deklarativ syntaks
+
+---
+
+# Utviklerteknikker inn i drift 
+
+* Versjonskontroll av konfigurasjon
+* Refactoring og kontinuerlig forbedring (Inkrementell/evolusjoner arkitektur) 
+* Test-drevet design
+
+---
+
+# (Noen) forretningsverdier
+
+* Reproduserbar infrastruktur
+* Større uavhengighet til eksisterende infrastruktur
+	* Cloud, konkurranse, etc
+* Enklere oversikt over miljøer
+* A/B-testing av infrastruktur
+* Evolusjonær arkitektur / infrastruktur
+* På lengre sikt: lavere driftskostnader
+
+---
+
+# TODO: Og i tillegg... Utdyping av konfigurasjon som kode f&oslash;lger
+
+* Kjørbar dokumentasjon
+* Reproduserbarhet
+* Mer homogenitet i miljøer
+* Kontinuerlig integrasjon &amp; "ren kode" for drift
+* Testing
+* Refactoring
+
+---
+
+# Konfigurasjonsstyring
+
+* Konfigurasjonsfiler
+* Avhengigheter (innenfor en maskin og mellom maskiner og deres tjenester)
+* Endringer i sanntid
+
+
+---
+
+.pushed.greyscale
+
+![](images/cowboy.jpg)
+
+# Mindre cowboy-virksomhet!
+
+.source[http://flic.kr/p/6cdm8]
+
+---
+
+# TODO: Deklarativ Konfigurasjonsstyring
+
+Definisjon fra f.eks. Luke Kanies / DCMP
 
 ---
 
@@ -146,6 +210,7 @@ Utvikler med mye erfaring fra drift. Siste par &aring;rene utviklet og automatis
 # Deklarativ konfigurasjonsstyring
 
 * Deklarativ fremfor imperativ
+* Automatiserer og orkestrerer infrastruktur
 * Gjenskape et milj&oslash; fra forskjellige utgangspunkt
 
 <div class="col">
@@ -179,7 +244,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Implementasjoner av deklarativ konfigurasjonsstyring
+# Historisk utvikling av konfigurasjonsstyring
 
 <table>
   <tr>
@@ -191,32 +256,46 @@ Deklarativt uavhengig av OS:
       Spr&aring;k
   <tr>
     <td>
+      Bourne shell
+    <td>
+      1977
+    <td>
+      Scripting
+  <tr>
+    <td>
+      RCS
+    <td>
+      1982
+    <td>
+      Versjonskontrollsystem
+  <tr>
+    <td>
+      Perl
+    <td>
+      1987
+    <td>
+      Krafull scripting
+  <tr>
+    <td>
+      FreeBSD Ports
+    <td>
+      1993
+    <td>
+      Plattformuavhengig package manager
+  <tr>
+    <td>
       CFEngine
     <td>
       1993
     <td>
-      Lav-niv&aring; DSL
-  <tr>
-    <td>
-      LCFG
-    <td>
-      1994
-    <td>
-      XML
-  <tr>
-    <td>
-      Bcfg2
-    <td>
-      2004
-    <td>
-      XML
+      Deklarativt DSL
   <tr>
     <td>
       Puppet
     <td>
       2005
     <td>
-      DSL
+      H&oslash; deklarativt DSL
   <tr>
     <td>
       Chef
@@ -238,13 +317,6 @@ Deklarativt uavhengig av OS:
       2011
     <td>
       POSIX Shell
-  <tr>
-    <td>
-      Pallet
-    <td>
-      2011
-    <td>
-      Clojure
 </table>
 
 ---
