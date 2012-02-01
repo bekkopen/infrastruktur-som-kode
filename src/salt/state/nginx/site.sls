@@ -1,7 +1,7 @@
 include:
   - nginx
 
-{% for hostname, root in [("salt.uggedal.com", "/var/www")], %}
+{% for hostname, root in [("salt.uggedal.com", "/var/www"),] %}
 /etc/nginx/sites-available/{{ hostname }}.conf:
   file:
     - managed
