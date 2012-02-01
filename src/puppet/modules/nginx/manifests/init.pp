@@ -8,4 +8,9 @@ class nginx {
     enable => true,
     require => Package["nginx"],
   }
+
+  file { "/etc/nginx/sites-enabled/default":
+    ensure => absent,
+    notify => Service["nginx"],
+  }
 }

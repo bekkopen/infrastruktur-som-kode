@@ -1,3 +1,7 @@
+/etc/nginx/sites-available/default:
+  file:
+    - absent
+
 {% for hostname in "salt.uggedal.com", %}
 /etc/nginx/sites-available/{{ hostname }}:
   file:
