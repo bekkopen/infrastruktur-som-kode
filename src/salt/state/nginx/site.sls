@@ -21,8 +21,8 @@ include:
       - file: /etc/nginx/sites-available/{{ hostname }}
 
 extend:
-  nginx:
+  nginx::
     service:
-      - watch
+      - watch:
         - file: /etc/nginx/sites-enabled/{{ hostname }}
 {% endfor %}
