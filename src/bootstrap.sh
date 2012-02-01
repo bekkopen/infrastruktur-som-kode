@@ -17,7 +17,7 @@ EOF
 apt-get update -q
 apt-get dist-upgrade -qy
 
-apt-get install -qy git
+apt-get install -qy git screen
 
 if [ ! -d "$HOME/infrastruktur-som-kode" ]; then
   git clone git://github.com/bekkopen/infrastruktur-som-kode.git
