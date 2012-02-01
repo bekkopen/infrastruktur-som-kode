@@ -2,4 +2,4 @@
 
 set -e
 
-apt-get install -y puppet
+apt-get install -qy puppet

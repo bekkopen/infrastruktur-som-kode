@@ -14,10 +14,10 @@ APT {
 };
 EOF
 
-apt-get update
-apt-get dist-upgrade -y
+apt-get update -q
+apt-get dist-upgrade -qy
 
-apt-get install git -y
+apt-get install -qy git
 
 if [ ! -d "$HOME/infrastruktur-som-kode" ]; then
   git clone git://github.com/bekkopen/infrastruktur-som-kode.git
