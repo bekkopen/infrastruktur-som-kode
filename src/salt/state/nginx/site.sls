@@ -5,7 +5,7 @@
     - source: salt://nginx/site.conf
     - template: jinja
     - context: {
-      hostname: "{{ hostname }}"
+      hostname: "{{ hostname }}",
       root: "/var/www" }
     - require:
       - pkg: nginx
