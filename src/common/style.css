@@ -1,0 +1,20 @@
+body {
+  background: #EF4723;
+  color: #222;
+}
+
+p {
+  font: 800 10em/10em "open sans";
+  left: 50%;
+  margin-top: -5em;
+  margin-left: -25em;
+  position: fixed;
+  text-transform: uppercase;
+  top: 50%;
+  height: 10em;
+  width: 50em;
+}
+
+p span {
+  font: italic 400 10em/10em "gentium book basic";
+}
