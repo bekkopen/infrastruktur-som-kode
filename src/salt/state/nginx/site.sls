@@ -1,3 +1,6 @@
+include:
+  - nginx
+
 /etc/nginx/sites-available/default:
   file:
     - absent
@@ -13,10 +16,17 @@
       root: "/var/www" }
     - require:
       - pkg: nginx
+
 /etc/nginx/sites-enabled/{{ hostname }}:
   file:
     - symlink
     - target: /etc/nginx/sites-available/{{ hostname }}
     - require:
       - file: /etc/nginx/sites-available/{{ hostname }}
+
+extend:
+  nginx
+    service:
+      - watch
+        - file: /etc/nginx/sites-enabled/{{ hostname }}
 {% endfor %}
