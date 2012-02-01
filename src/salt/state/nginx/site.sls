@@ -1,4 +1,5 @@
-{% for hostname in "salt.uggedal.com" %}
+{% set hostname = "salt.uggedal.com" %}
+
 /etc/nginx/sites-available/{{ hostname }}:
   file:
     - managed
@@ -9,9 +10,9 @@
       root: "/var/www" }
     - require:
       - pkg: nginx
+
 /etc/nginx/sites-enabled/{{ hostname }}:
   file:
     - symlink
     - require:
       - file: /etc/nginx/sites-available/{{ hostname }}
-{% endfor %}
