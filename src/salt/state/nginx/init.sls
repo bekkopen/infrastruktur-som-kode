@@ -4,4 +4,4 @@ nginx:
   service:
     - running
     - require
-      -pkg: nginx
+      - pkg: nginx
