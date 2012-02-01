@@ -2,7 +2,10 @@
 
 set -e
 
-echo "deb http://ukdebian.mirror.anlx.net/debian/ squeeze main contrib non-free" > /etc/apt/sources.list
+mirror="http://ukdebian.mirror.anlx.net/debian/"
+
+echo "deb $mirror squeeze main contrib non-free" > /etc/apt/sources.list
+echo "deb $mirror wheezy main contrib non-free" > /etc/apt/sources.list.d/wheezy.list
 apt-get update
 apt-get dist-upgrade -y
 
