@@ -57,6 +57,18 @@
       #slideshow .slide .content ul li {
         color: white;
       }
+
+      #slideshow .slide .content.large code {
+        font-size: 24px;
+      }
+
+      #slideshow .slide .content code {
+        font-size: 20px;
+      }
+
+      #slideshow .slide .content.small code {
+        font-size: 16px;
+      }
     </style>
   </head>
   <body>
@@ -339,6 +351,125 @@ Deklarativt uavhengig av OS:
     <td>
       Liten
 </table>
+
+---
+
+# Sammenligning av bruk
+
+## Usecase
+
+1. Installer nginx.
+2. Konfigurer en virtual host gitt parameterene:
+    - `hostname`
+    - `root`
+3. Plasser en index.html fil med innhold i `root`.
+
+---
+
+# Manuell installasjon
+
+    .bash
+    apt-get install nginx
+
+    vim /etc/nginx/sites-available/vhost.conf
+
+    ln -s /etc/nginx/sites-available/vhost.conf \
+      /etc/nginx/sites-enabled/vhost.conf
+
+    rm /etc/nginx/sites-enabled/default
+
+    /etc/init.d/nginx restart
+
+    mkdir /var/www
+
+    vim /var/www/index.html
+
+---
+
+.large
+
+# Puppet (nginx installasjon)
+
+    .ruby
+    class nginx {
+      package { "nginx":
+        ensure => present
+      }
+
+      service { "nginx":
+        ensure => running,
+        enable => true,
+        require => Package["nginx"],
+      }
+
+      file { "/etc/nginx/sites-enabled/default":
+        ensure => absent,
+        notify => Service["nginx"],
+      }
+    }
+
+---
+
+# Puppet (generisk nginx vhost)
+
+    .ruby
+    define nginx::site($root) {
+      $hostname = $name
+
+      file {
+        "/etc/nginx/sites-available/${hostname}.conf":
+          content => template("nginx/site.conf.erb"),
+          require => Package["nginx"],
+          notify => Service["nginx"];
+
+        "/etc/nginx/sites-enabled/${hostname}.conf":
+          ensure => link,
+          target => "/etc/nginx/sites-available/${hostname}.conf",
+          require => File["/etc/nginx/sites-available/${hostname}.conf"],
+          notify => Service["nginx"];
+      }
+    }
+
+---
+
+.large
+
+# Puppet (template)
+
+    server {
+      listen 80;
+      server_name <%= hostname %>;
+
+      root <%= root %>;
+
+      access_log  /var/log/nginx/<%= hostname %>.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Puppet (bruk av generisk kode)
+
+    .ruby
+    class hello($root="/var/www") {
+      include nginx
+
+      nginx::site { "puppet.uggedal.com":
+        root => $root,
+      }
+
+      file {
+        $root:
+          ensure => directory;
+
+        "${root}/index.html":
+          source => "puppet:///modules/hello/index.html",
+          require => File[$root];
+      }
+    }
 
 ---
 
