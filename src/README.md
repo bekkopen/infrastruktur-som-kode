@@ -31,5 +31,6 @@ Bootstrap
 TODO
 ----
 
+    [ ] Move code examples to slides.
     [ ] Copy over pubkey in bootstrap.
     [ ] Extend example if needed (owner of /var/www)
