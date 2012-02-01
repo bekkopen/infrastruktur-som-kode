@@ -32,7 +32,4 @@ TODO
 ----
 
     [ ] Copy over pubkey in bootstrap.
-    [ ] Bootstrap salt.
-    [ ] Implement chef example.
-    [ ] Implement salt example.
     [ ] Extend example if needed (owner of /var/www)
