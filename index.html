@@ -38,15 +38,31 @@
       }
 
       th {
-        color: #FD5158;
         font-weight: normal;
         text-align: left;
       }
 
       td,
       th {
-        padding: 5px 10px;
+        border: 5px solid #000;
+        border-left-width: 20px;
+        border-right-width: 20px;
         vertical-align: top;
+      }
+
+      th:first-child,
+      td:first-child {
+        border-left-width: 0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right-width: 0;
+      }
+
+      td.has {
+        background: rgba(253, 81, 88, .25);
+        text-align: center;
       }
 
       td.has::after {
