@@ -6,6 +6,7 @@ define :nginx_site, :root => "/dev/null" do
       :hostname => params[:name],
       :root => params[:root]
     )
+    cookbook "nginx"
   end
 
   link "/etc/nginx/sites-enabled/#{params[:name]}.conf" do
