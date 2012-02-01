@@ -1,10 +1,6 @@
 include:
   - nginx
 
-/etc/nginx/sites-available/default:
-  file:
-    - absent
-
 {% for hostname in "salt.uggedal.com", %}
 /etc/nginx/sites-available/{{ hostname }}:
   file:
@@ -25,7 +21,7 @@ include:
       - file: /etc/nginx/sites-available/{{ hostname }}
 
 extend:
-  nginx
+  nginx:
     service:
       - watch
         - file: /etc/nginx/sites-enabled/{{ hostname }}
