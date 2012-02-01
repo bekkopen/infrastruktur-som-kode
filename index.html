@@ -451,7 +451,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Puppet (bruk av generisk kode)
+# Puppet (konfigurere vhost og filer)
 
     .ruby
     class hello($root="/var/www") {
@@ -470,6 +470,172 @@ Deklarativt uavhengig av OS:
           require => File[$root];
       }
     }
+
+---
+
+.large
+
+# Chef (nginx installasjon)
+
+    .ruby
+    package "nginx"
+
+    service "nginx" do
+      supports :status => true, :restart => true
+      action [ :enable, :start ]
+    end
+
+    file "/etc/nginx/sites-enabled/default" do
+      action :delete
+      notifies :restart, resources(:service => "nginx")
+    end
+
+---
+
+# Chef (generisk nginx vhost)
+
+    .ruby
+    define :nginx_site, :root => "/dev/null" do
+
+      template "/etc/nginx/sites-available/#{params[:name]}.conf" do
+        source "site.conf.erb"
+        variables(
+          :hostname => params[:name],
+          :root => params[:root]
+        )
+        cookbook "nginx"
+      end
+
+      link "/etc/nginx/sites-enabled/#{params[:name]}.conf" do
+        to "/etc/nginx/sites-available/#{params[:name]}.conf"
+        notifies :restart, resources(:service => "nginx")
+      end
+
+    end
+
+---
+
+.large
+
+# Chef (template)
+
+    server {
+      listen 80;
+      server_name <%= @hostname %>;
+
+      root <%= @root %>;
+
+      access_log  /var/log/nginx/<%= @hostname %>.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Chef (konfigurere vhost og filer)
+
+    .ruby
+    nginx_site "chef.uggedal.com" do
+      root "/var/www"
+    end
+
+    directory "/var/www" do
+      mode "0755"
+    end
+
+    cookbook_file "/var/www/index.html" do
+      source "index.html"
+      mode "0644"
+    end
+
+---
+
+.large
+
+# Salt (nginx installasjon)
+
+    .django
+    nginx:
+      pkg:
+        - installed
+      service:
+        - running
+        - require:
+          - pkg: nginx
+      file:
+        - name: /etc/nginx/sites-enabled/default
+        - absent
+        - require:
+          - pkg: nginx
+
+---
+
+# Salt (nginx vhost)
+
+    .django
+    {% for hostname in "salt.uggedal.com", %}
+    /etc/nginx/sites-available/{{ hostname }}.conf:
+      file:
+        - managed
+        - source: salt://nginx/site.conf
+        - template: jinja
+        - context: {
+          hostname: "{{ hostname }}",
+          root: "/var/www" }
+        - require:
+          - pkg: nginx
+
+    /etc/nginx/sites-enabled/{{ hostname }}.conf:
+      file:
+        - symlink
+        - target: /etc/nginx/sites-available/{{ hostname }}.conf
+        - require:
+          - file: /etc/nginx/sites-available/{{ hostname }}.conf
+
+    extend:
+      nginx:
+        service:
+          - watch:
+            - file: /etc/nginx/sites-enabled/{{ hostname }}.conf
+    {% endfor %}
+
+---
+
+.large
+
+# Salt (template)
+
+    .django
+    server {
+      listen 80;
+      server_name {{ hostname }};
+
+      root {{ root }};
+
+      access_log  /var/log/nginx/{{ hostname }}.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Salt (konfigurere filer)
+
+    .django
+    /var/www:
+      file:
+        - directory
+
+    /var/www/index.html:
+      file:
+        - managed
+        - source: salt://hello/index.html
+        - require:
+          - file: /var/www
 
 ---
 
