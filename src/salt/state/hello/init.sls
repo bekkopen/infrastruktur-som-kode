@@ -1,11 +1,10 @@
 /var/www:
   file:
     - directory
-    - source: salt://nginx/index.html
 
 /var/www/index.html:
   file:
     - managed
-    - source: salt://nginx/index.html
+    - source: salt://hello/index.html
     - require:
       - file: /var/www
