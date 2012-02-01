@@ -1,7 +1,7 @@
 include:
   - nginx
 
-{% for hostname in "salt.uggedal.com", %}
+{% for hostname, root in [("salt.uggedal.com", "/var/www")], %}
 /etc/nginx/sites-available/{{ hostname }}.conf:
   file:
     - managed
@@ -9,7 +9,7 @@ include:
     - template: jinja
     - context: {
       hostname: "{{ hostname }}",
-      root: "/var/www" }
+      root: "{{ root }}" }
     - require:
       - pkg: nginx
 
