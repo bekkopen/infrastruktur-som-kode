@@ -21,7 +21,7 @@ include:
       - file: /etc/nginx/sites-available/{{ hostname }}
 
 extend:
-  nginx::
+  nginx:
     service:
       - watch:
         - file: /etc/nginx/sites-enabled/{{ hostname }}
