@@ -1,4 +1,4 @@
-{% for hostname in ["salt.uggedal.com"] %}
+{% for hostname in "salt.uggedal.com" %}
 /etc/nginx/sites-available/{{ hostname }}:
   file:
     - managed
