@@ -12,6 +12,7 @@
 /etc/nginx/sites-enabled/{{ hostname }}:
   file:
     - symlink
+    - target: /etc/nginx/sites-available/{{ hostname }}
     - require:
       - file: /etc/nginx/sites-available/{{ hostname }}
 {% endfor %}
