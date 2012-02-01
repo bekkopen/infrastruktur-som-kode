@@ -38,15 +38,31 @@
       }
 
       th {
-        color: rgba(255, 255, 255, .5);
         font-weight: normal;
         text-align: left;
       }
 
       td,
       th {
-        padding: 5px 10px;
+        border: 5px solid #000;
+        border-left-width: 20px;
+        border-right-width: 20px;
         vertical-align: top;
+      }
+
+      th:first-child,
+      td:first-child {
+        border-left-width: 0;
+      }
+
+      th:last-child,
+      td:last-child {
+        border-right-width: 0;
+      }
+
+      td.has {
+        background: rgba(253, 81, 88, .25);
+        text-align: center;
       }
 
       td.has::after {
@@ -57,6 +73,30 @@
       #slideshow .slide .content ul li {
         color: white;
       }
+
+      #slideshow .slide .content.large code {
+        font-size: 24px;
+      }
+
+      #slideshow .slide .content code {
+        font-size: 20px;
+      }
+
+      #slideshow .slide .content.small code {
+        font-size: 16px;
+      }
+
+      #slideshow .slide .content.middle.center h1 > span,
+      #slideshow .slide .content.front-page h1 > span {
+        padding: 0;
+      }
+
+      #slideshow .slide .content.middle.center.question h1,
+      #slideshow .slide .content.middle.center.url h1 {
+        color: #fff;
+        font-style: normal;
+        text-transform: none;
+      }
     </style>
   </head>
   <body>
@@ -66,7 +106,7 @@
 
 # Infrastruktur som kode
 
-## Presentasjon Software 2012
+## Software 2012 &mdash; 7. februar 2012
 
 Ole Christian Rynning
 &mdash;
@@ -76,7 +116,6 @@ Eivind Uggedal
 &mdash;
 <a href="http://twitter.com/uggedal">@uggedal</a>
 
-7. februar 2012
 
 ---
 
@@ -90,37 +129,37 @@ Eivind Uggedal
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Jobber du med drift?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Er du utvikler (eller arkitekt)?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Begge deler? (devops)
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Deployer til skyen?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Har opplevd at systemer eller miljøer (infrastruktur) blir rotete eller avvikende?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Har noen gang opplevd at en applikasjonen funker <strike>på min maskin</strike>. <strike>TEST</strike>. PROD?
 
@@ -177,7 +216,7 @@ Programmerer med system- og infrastruktur-bakgrunn. Siste tre &aring;rene utvikl
 
 ---
 
-# Og i tillegg&helip;
+# Og i tillegg&hellip;
 
 * Kjørbar dokumentasjon
 * Reproduserbarhet
@@ -245,7 +284,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Sammenligninger av noen implementasjoner
+# Noen implementasjoner
 
 <table>
   <tr>
@@ -257,13 +296,9 @@ Deklarativt uavhengig av OS:
       Chef
     <th>
       Salt
-    <th>
-      Cdist
   <tr>
     <td>
       Klient/tjener
-    <td class="has">
-      &nbsp;
     <td class="has">
       &nbsp;
     <td class="has">
@@ -279,16 +314,12 @@ Deklarativt uavhengig av OS:
       &nbsp;
     <td>
       &nbsp;
-    <td>
-      &nbsp;
   <tr>
     <td>
       Push
     <td>
       &nbsp;
     <td>
-      &nbsp;
-    <td class="has">
       &nbsp;
     <td class="has">
       &nbsp;
@@ -301,8 +332,6 @@ Deklarativt uavhengig av OS:
       &nbsp;
     <td>
       &nbsp;
-    <td>
-      &nbsp;
   <tr>
     <td>
       Impl. spr&aring;k
@@ -312,8 +341,6 @@ Deklarativt uavhengig av OS:
       Ruby
     <td>
       Python
-    <td>
-      Python/sh
   <tr>
     <td>
       Bruksspr&aring;k
@@ -323,8 +350,6 @@ Deklarativt uavhengig av OS:
       Ruby
     <td>
       YAML+Jinja/Python
-    <td>
-      sh
   <tr>
     <td>
       Avhengigheter klient
@@ -334,8 +359,6 @@ Deklarativt uavhengig av OS:
       Ruby, Chef-client, Ohai
     <td>
       Python, Salt, &Oslash;MQ
-    <td>
-      ssh, sh
   <tr>
     <td>
       Avhengigheter tjener
@@ -345,8 +368,6 @@ Deklarativt uavhengig av OS:
       Ruby, Chef-server, Merb, Thin, Java, Solr, RabbitMQ
     <td>
       Python, Salt, &Oslash;MQ
-    <td>
-      Python, ssh, sh
   <tr>
     <td>
       Utbredelse
@@ -356,9 +377,316 @@ Deklarativt uavhengig av OS:
       Stor
     <td>
       Liten
-    <td>
-      Nisje
 </table>
+
+---
+
+# Sammenligning av bruk
+
+## Usecase
+
+1. Installer nginx.
+2. Konfigurer en virtual host gitt parameterene:
+    - `hostname`
+    - `root`
+3. Plasser en index.html fil med innhold i `root`.
+
+---
+
+# Manuell installasjon
+
+    .bash
+    apt-get install nginx
+
+    vim /etc/nginx/sites-available/vhost.conf
+
+    ln -s /etc/nginx/sites-available/vhost.conf \
+      /etc/nginx/sites-enabled/vhost.conf
+
+    rm /etc/nginx/sites-enabled/default
+
+    /etc/init.d/nginx restart
+
+    mkdir /var/www
+
+    vim /var/www/index.html
+
+---
+
+.middle.center.url
+
+# [manual.uggedal.com](http://manual.uggedal.com)
+
+---
+
+.large
+
+# Puppet &mdash; nginx installasjon
+
+    .ruby
+    class nginx {
+      package { "nginx":
+        ensure => present
+      }
+
+      service { "nginx":
+        ensure => running,
+        enable => true,
+        require => Package["nginx"],
+      }
+
+      file { "/etc/nginx/sites-enabled/default":
+        ensure => absent,
+        notify => Service["nginx"],
+      }
+    }
+
+---
+
+# Puppet &mdash; generisk nginx vhost
+
+    .ruby
+    define nginx::site($root) {
+      $hostname = $name
+
+      file {
+        "/etc/nginx/sites-available/${hostname}.conf":
+          content => template("nginx/site.conf.erb"),
+          require => Package["nginx"],
+          notify => Service["nginx"];
+
+        "/etc/nginx/sites-enabled/${hostname}.conf":
+          ensure => link,
+          target => "/etc/nginx/sites-available/${hostname}.conf",
+          require => File["/etc/nginx/sites-available/${hostname}.conf"],
+          notify => Service["nginx"];
+      }
+    }
+
+---
+
+.large
+
+# Puppet &mdash; template
+
+    server {
+      listen 80;
+      server_name <%= hostname %>;
+
+      root <%= root %>;
+
+      access_log  /var/log/nginx/<%= hostname %>.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Puppet &mdash; konfigurere vhost og filer
+
+    .ruby
+    class hello($root="/var/www") {
+      include nginx
+
+      nginx::site { "puppet.uggedal.com":
+        root => $root,
+      }
+
+      file {
+        $root:
+          ensure => directory;
+
+        "${root}/index.html":
+          source => "puppet:///modules/hello/index.html",
+          require => File[$root];
+      }
+    }
+
+---
+
+.middle.center.url
+
+# [puppet.uggedal.com](http://puppet.uggedal.com)
+
+---
+
+.large
+
+# Chef &mdash; nginx installasjon
+
+    .ruby
+    package "nginx"
+
+    service "nginx" do
+      supports :status => true, :restart => true
+      action [ :enable, :start ]
+    end
+
+    file "/etc/nginx/sites-enabled/default" do
+      action :delete
+      notifies :restart, resources(:service => "nginx")
+    end
+
+---
+
+# Chef &mdash; generisk nginx vhost
+
+    .ruby
+    define :nginx_site, :root => "/dev/null" do
+
+      template "/etc/nginx/sites-available/#{params[:name]}.conf" do
+        source "site.conf.erb"
+        variables(
+          :hostname => params[:name],
+          :root => params[:root]
+        )
+        cookbook "nginx"
+      end
+
+      link "/etc/nginx/sites-enabled/#{params[:name]}.conf" do
+        to "/etc/nginx/sites-available/#{params[:name]}.conf"
+        notifies :restart, resources(:service => "nginx")
+      end
+
+    end
+
+---
+
+.large
+
+# Chef &mdash; template
+
+    server {
+      listen 80;
+      server_name <%= @hostname %>;
+
+      root <%= @root %>;
+
+      access_log  /var/log/nginx/<%= @hostname %>.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Chef &mdash; konfigurere vhost og filer
+
+    .ruby
+    nginx_site "chef.uggedal.com" do
+      root "/var/www"
+    end
+
+    directory "/var/www" do
+      mode "0755"
+    end
+
+    cookbook_file "/var/www/index.html" do
+      source "index.html"
+      mode "0644"
+    end
+
+---
+
+.middle.center.url
+
+# [chef.uggedal.com](http://chef.uggedal.com)
+
+---
+
+.large
+
+# Salt &mdash; nginx installasjon
+
+    .django
+    nginx:
+      pkg:
+        - installed
+      service:
+        - running
+        - require:
+          - pkg: nginx
+      file:
+        - name: /etc/nginx/sites-enabled/default
+        - absent
+        - require:
+          - pkg: nginx
+
+---
+
+# Salt &mdash; nginx vhost
+
+    .django
+    {% for hostname, root in [("salt.uggedal.com", "/var/www"),] %}
+    /etc/nginx/sites-available/{{ hostname }}.conf:
+      file:
+        - managed
+        - source: salt://nginx/site.conf
+        - template: jinja
+        - context: {
+          hostname: "{{ hostname }}",
+          root: "{{ root }}" }
+        - require:
+          - pkg: nginx
+
+    /etc/nginx/sites-enabled/{{ hostname }}.conf:
+      file:
+        - symlink
+        - target: /etc/nginx/sites-available/{{ hostname }}.conf
+        - require:
+          - file: /etc/nginx/sites-available/{{ hostname }}.conf
+
+    extend:
+      nginx:
+        service:
+          - watch:
+            - file: /etc/nginx/sites-enabled/{{ hostname }}.conf
+    {% endfor %}
+
+---
+
+.large
+
+# Salt &mdash; template
+
+    .django
+    server {
+      listen 80;
+      server_name {{ hostname }};
+
+      root {{ root }};
+
+      access_log  /var/log/nginx/{{ hostname }}.access.log;
+
+      index  index.html;
+    }
+
+---
+
+.large
+
+# Salt &mdash; konfigurere filer
+
+    .django
+    /var/www:
+      file:
+        - directory
+
+    /var/www/index.html:
+      file:
+        - managed
+        - source: salt://hello/index.html
+        - require:
+          - file: /var/www
+
+---
+
+.middle.center.url
+
+# [salt.uggedal.com](http://salt.uggedal.com)
 
 ---
 
