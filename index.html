@@ -90,6 +90,13 @@
       #slideshow .slide .content.front-page h1 > span {
         padding: 0;
       }
+
+      #slideshow .slide .content.middle.center.question h1,
+      #slideshow .slide .content.middle.center.url h1 {
+        color: #fff;
+        font-style: normal;
+        text-transform: none;
+      }
     </style>
   </head>
   <body>
@@ -122,37 +129,37 @@ Eivind Uggedal
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Jobber du med drift?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Er du utvikler (eller arkitekt)?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Begge deler? (devops)
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Deployer til skyen?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Har opplevd at systemer eller miljøer (infrastruktur) blir rotete eller avvikende?
 
 ---
 
-.middle.center
+.middle.center.question
 
 # Har noen gang opplevd at en applikasjonen funker <strike>på min maskin</strike>. <strike>TEST</strike>. PROD?
 
@@ -406,7 +413,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.middle.center
+.middle.center.url
 
 # [manual.uggedal.com](http://manual.uggedal.com)
 
@@ -414,7 +421,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Puppet (nginx installasjon)
+# Puppet &mdash; nginx installasjon
 
     .ruby
     class nginx {
@@ -436,7 +443,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Puppet (generisk nginx vhost)
+# Puppet &mdash; generisk nginx vhost
 
     .ruby
     define nginx::site($root) {
@@ -460,7 +467,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Puppet (template)
+# Puppet &mdash; template
 
     server {
       listen 80;
@@ -477,7 +484,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Puppet (konfigurere vhost og filer)
+# Puppet &mdash; konfigurere vhost og filer
 
     .ruby
     class hello($root="/var/www") {
@@ -499,7 +506,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.middle.center
+.middle.center.url
 
 # [puppet.uggedal.com](http://puppet.uggedal.com)
 
@@ -507,7 +514,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Chef (nginx installasjon)
+# Chef &mdash; nginx installasjon
 
     .ruby
     package "nginx"
@@ -524,7 +531,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Chef (generisk nginx vhost)
+# Chef &mdash; generisk nginx vhost
 
     .ruby
     define :nginx_site, :root => "/dev/null" do
@@ -549,7 +556,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Chef (template)
+# Chef &mdash; template
 
     server {
       listen 80;
@@ -566,7 +573,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Chef (konfigurere vhost og filer)
+# Chef &mdash; konfigurere vhost og filer
 
     .ruby
     nginx_site "chef.uggedal.com" do
@@ -584,7 +591,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.middle.center
+.middle.center.url
 
 # [chef.uggedal.com](http://chef.uggedal.com)
 
@@ -592,7 +599,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Salt (nginx installasjon)
+# Salt &mdash; nginx installasjon
 
     .django
     nginx:
@@ -610,7 +617,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Salt (nginx vhost)
+# Salt &mdash; nginx vhost
 
     .django
     {% for hostname, root in [("salt.uggedal.com", "/var/www"),] %}
@@ -643,7 +650,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Salt (template)
+# Salt &mdash; template
 
     .django
     server {
@@ -661,7 +668,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Salt (konfigurere filer)
+# Salt &mdash; konfigurere filer
 
     .django
     /var/www:
@@ -677,7 +684,7 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.middle.center
+.middle.center.url
 
 # [salt.uggedal.com](http://salt.uggedal.com)
 
