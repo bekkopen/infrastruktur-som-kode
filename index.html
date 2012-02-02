@@ -452,6 +452,32 @@ Deklarativt uavhengig av OS:
 
 .large
 
+# Puppet &mdash; konfigurere host og filer
+
+    .ruby
+    node "puppet.uggedal.com" {
+      $root="/var/www"
+
+      include nginx
+
+      nginx::site { "puppet.uggedal.com":
+        root => $root,
+      }
+
+      file {
+        $root:
+          ensure => directory;
+
+        "${root}/index.html":
+          source => "puppet:///modules/hello/index.html",
+          require => File[$root];
+      }
+    }
+
+---
+
+.large
+
 # Puppet &mdash; nginx installasjon
 
     .ruby
@@ -513,33 +539,43 @@ Deklarativt uavhengig av OS:
 
 ---
 
+.middle.center.url
+
+# [puppet.uggedal.com](http://puppet.uggedal.com)
+
+---
+
 .large
 
-# Puppet &mdash; konfigurere vhost og filer
+# Chef &mdash; konfigurere host
 
-    .ruby
-    class hello($root="/var/www") {
-      include nginx
-
-      nginx::site { "puppet.uggedal.com":
-        root => $root,
-      }
-
-      file {
-        $root:
-          ensure => directory;
-
-        "${root}/index.html":
-          source => "puppet:///modules/hello/index.html",
-          require => File[$root];
-      }
+    .javascript
+    {
+      "run_list": [
+        "recipe[nginx]",
+        "recipe[hello]"
+      ]
     }
 
 ---
 
-.middle.center.url
+.large
 
-# [puppet.uggedal.com](http://puppet.uggedal.com)
+# Chef &mdash; konfigurere vhost og filer
+
+    .ruby
+    nginx_site "chef.uggedal.com" do
+      root "/var/www"
+    end
+
+    directory "/var/www" do
+      mode "0755"
+    end
+
+    cookbook_file "/var/www/index.html" do
+      source "index.html"
+      mode "0644"
+    end
 
 ---
 
@@ -602,29 +638,40 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.large
-
-# Chef &mdash; konfigurere vhost og filer
-
-    .ruby
-    nginx_site "chef.uggedal.com" do
-      root "/var/www"
-    end
-
-    directory "/var/www" do
-      mode "0755"
-    end
-
-    cookbook_file "/var/www/index.html" do
-      source "index.html"
-      mode "0644"
-    end
-
----
-
 .middle.center.url
 
 # [chef.uggedal.com](http://chef.uggedal.com)
+
+---
+
+.large
+
+# Salt &mdash; konfigurasjon for host
+
+    .django
+    base:
+      '*':
+        - nginx
+        - nginx.site
+        - hello
+
+---
+
+.large
+
+# Salt &mdash; konfigurere filer
+
+    .django
+    /var/www:
+      file:
+        - directory
+
+    /var/www/index.html:
+      file:
+        - managed
+        - source: salt://hello/index.html
+        - require:
+          - file: /var/www
 
 ---
 
@@ -694,24 +741,6 @@ Deklarativt uavhengig av OS:
 
       index  index.html;
     }
-
----
-
-.large
-
-# Salt &mdash; konfigurere filer
-
-    .django
-    /var/www:
-      file:
-        - directory
-
-    /var/www/index.html:
-      file:
-        - managed
-        - source: salt://hello/index.html
-        - require:
-          - file: /var/www
 
 ---
 
