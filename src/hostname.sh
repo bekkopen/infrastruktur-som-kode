@@ -2,7 +2,7 @@
 
 set -e
 
-function set_hostname() {
+set_hostname() {
   $hostname=$1
   pub_ip=$(ifconfig eth0 | awk -F':' '/inet addr/{split($2,_," ");print _[1]}')
 
