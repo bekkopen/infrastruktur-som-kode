@@ -97,6 +97,15 @@
         font-style: normal;
         text-transform: none;
       }
+      blockquote.text-quote {
+	      font-style: italic;
+		  margin-top: 35px;
+		  margin-bottom: 10px;
+		  margin-left: 25px;
+		  padding-left: 15px;
+		  border-left: 3px solid #ccc;
+      }
+
     </style>
   </head>
   <body>
@@ -149,19 +158,19 @@ Eivind Uggedal
 
 .middle.center.question
 
-# Deployer til skyen?
+# Deployer du til skyen?
 
 ---
 
 .middle.center.question
 
-# Har opplevd at systemer eller miljøer (infrastruktur) blir rotete eller avvikende?
+# Har du opplevd rot/avvik i systemer eller miljøer (infrastruktur)?
 
 ---
 
 .middle.center.question
 
-# Har noen gang opplevd at en applikasjonen funker <strike>på min maskin</strike>. <strike>TEST</strike>. PROD?
+# Har noen gang sagt applikasjonen funker <strike>på min maskin</strike> <strike>i TEST</strike>. PROD?
 
 ---
 
@@ -173,57 +182,41 @@ Programmerer, har administrert og automatisert flere populære nettløsninger, s
 
 ## Ole Christian Rynning
 
-Programmerer med system- og infrastruktur-bakgrunn. Siste tre &aring;rene utviklet systemer, infrastruktur og plattform for kontinuerlige leveranser for Bring sitt utviklingsteam. 
+Programmerer med system- og infrastruktur-bakgrunn. Siste tre &aring;rene utviklet nye systemer og infrastruktur i Bring sitt utviklingsteam. 
 
 ---
 
 # Agenda
 
 * Infrastruktur som kode (Historisk blikk, Definisjon, Hvorfor?)
-* Deklarativ konfigurasjonsstyring (Definisjon, Ulike alternativer, Orkestrering og Testing)
+* Deklarativ konfigurasjonsstyring (Definisjon, Alternativer, Orkestrering og Testing)
 * En praktisk demonstrasjon 
 
 ---
 
 # Historie
 
-1. Manuell
-2. Scripting
-3. Fildistribuering
-4. Deklarativ syntaks
-
 ![](images/timeline.png)
 
 ---
 
-# Utviklerteknikker inn i drift 
+# Behandle infrastruktur som kode
 
 * Versjonskontroll av konfigurasjon
-* Refactoring og kontinuerlig forbedring (Inkrementell/evolusjoner arkitektur) 
+* Refactoring og kontinuerlig forbedring
+* Inkrementell/evolusjonær arkitektur
 * Test-drevet design
+* Kjørbar og oppdatert dokumentasjon
+* "Ren kode" for drift
 
 ---
 
 # (Noen) forretningsverdier
 
 * Reproduserbar infrastruktur
-* Større uavhengighet til eksisterende infrastruktur
-	* Cloud, konkurranse, etc
+* Evolusjonær infrastruktur
+* Økt uavhengighet til infrastruktur
 * Enklere oversikt over miljøer
-* A/B-testing av infrastruktur
-* Evolusjonær arkitektur / infrastruktur
-* På lengre sikt: lavere driftskostnader
-
----
-
-# Og i tillegg&hellip;
-
-* Kjørbar dokumentasjon
-* Reproduserbarhet
-* Mer homogenitet i miljøer
-* Kontinuerlig integrasjon &amp; "ren kode" for drift
-* Testing
-* Refactoring
 
 ---
 
@@ -237,11 +230,34 @@ Programmerer med system- og infrastruktur-bakgrunn. Siste tre &aring;rene utvikl
 
 ---
 
+# Deklarativ konfigurasjonsstyring
+
+<blockquote class="text-quote">
+Konfigurasjonsstyringsverktøy er et sett av mindre verktøy som lar deg beskrive 
+et oppsett av infrastruktur på en slik måte at konfigurasjonsverktøyet vil la deg
+gjenopprette det identiske oppsettet fra **ethvert kjent startpunkt, og til enhver
+kompatibel infrastruktur**.
+
+Hvor et automatiseringsverktøy som scripting er **imperativt**, (gjør dette, 
+så gjør dette), så pleier konfigurasjonsstyringsverkøy å være **deklarative**.
+
+Med deklarativt oppsett, sier du for eksempel: "Jeg har en server og den kjører
+MySQL databasen som denne brukeren.", så vil konfigurasjonsstyringsverktøyet
+finne ut alle steg som skal til for å få denne påstanden til å bli sann.
+
+&mdash; [Parafrasert, Jacob Kaplan-Moss]
+</blockquote>
+
+---
+
 # Konfigurasjonsstyring
 
-* Konfigurasjonsfiler
-* Avhengigheter (innenfor en maskin og mellom maskiner og deres tjenester)
-* Endringer i sanntid
+* Alle typiske konfigurasjonsfiler
+* Som lar deg uttrykke avhengigheter:
+  * Innenfor et system (én maskin)
+  * Mellom systemer (maskiner)
+  * Mellom maskiner og systemers tjenester
+* Håndtere endringer i infrastruktur i sanntid
 
 ---
 
