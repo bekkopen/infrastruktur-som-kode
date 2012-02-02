@@ -192,7 +192,7 @@ Programmerer med system- og infrastruktur-bakgrunn. Siste tre &aring;rene utvikl
 * Infrastruktur som kode (Historisk blikk, Definisjon, Hvorfor?)
 * Deklarativ konfigurasjonsstyring 
 * En praktisk demonstrasjon 
-* Litt om framtiden
+* Anti-patterns og framtiden.
 
 
 ---
@@ -724,18 +724,45 @@ Deklarativt uavhengig av OS:
 
 ---
 
-# Native pakker
+.middle.center.url
 
-deb, rpm, ebuild, pkgsrc, pacman og lignende.
-
-Flytte kompleksitet fra konfigurasjonsstyringsverkt&oslash;y til
-pakkesystemer
-
-FPM
+# Anti-patterns
 
 ---
 
-# Testing av konfigurasjon
+# AP#1: Spaghetti-konfigurasjon (på boks)
+
+Vårt største observerte anti-pattern er å prøve å putte alt for mye inn i konfigurasjonsstyringsverktøyet. 
+
+Vi anbefaler å flytte så mye kompleksitet som mulig fra konfigurasjonsstyringsverkt&oslash;y til pakkesystemer (deb, rpm, ebuild, pkgsrc, pacman m.fl).
+
+FPM til redning!
+
+---
+
+# AP#2: Manglende kontinuerlig integrasjon
+
+Et annet anti-pattern er å kjøre konfigurasjonsverktøyet manuelt og sporadisk. 
+
+Dette medfører ofte etterheng i systemer og miljøer. Folk vil etterhvert gå inn og "fikse" problemer manuelt. 
+
+Løsning: Kjør ofte og kontinuerlig. Skriv over manuelle fikser raskt. Øv på å re-tanke en hel server og konfigurere den opp igjen i blandt.
+
+---
+
+# AP#3: Kun manuell testing
+
+Det siste anti-pattern vi tar opp idag er symptomatisert av å **kun** bruke **manuelle** integrasjonstester (ende-til-ende).
+
+Vi anbefaler å jobbe aktivt med å automatisere integrasjonstestene. Det er et stykke å gå før dette er enkelt.
+
+* Helsesjekker i applikasjoner/systemer
+* Røyktester
+* Monitoreringstester
+* Redusert logging og loggmonitoering
+* Test av image med byggservere og røyktester
+
+Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 
 ---
 
