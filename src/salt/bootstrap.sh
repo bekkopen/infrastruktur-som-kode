@@ -2,6 +2,9 @@
 
 set -e
 
+. ./../hostname.sh
+set_hostname "salt.uggedal.com"
+
 apt-get install -qyt wheezy cython python-zmq python-yaml python-crypto \
   python-m2crypto python-jinja2 msgpack-python python-pip
 
