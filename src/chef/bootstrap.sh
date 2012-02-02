@@ -3,7 +3,7 @@
 set -e
 
 . ./../hostname.sh
-set_hostname "chef.uggedal.com"
+set_hostname="chef.uggedal.com"
 
 echo "deb http://apt.opscode.com/ squeeze-0.10 main" > /etc/apt/sources.list.d/opscode.list
 
