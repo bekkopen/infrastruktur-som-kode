@@ -512,7 +512,13 @@ Deklarativt uavhengig av OS:
     .django
     include:
       - nginx
-      - nginx.site
+
+    {% for i in range(1, 3) %}
+    salt-{{ i }}.uggedal.com:
+      nginx_site:
+        present
+        - root: /var/www
+    {% endfor %}
 
     /var/www:
       file:

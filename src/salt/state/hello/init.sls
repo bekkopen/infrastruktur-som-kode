@@ -1,6 +1,10 @@
 include:
   - nginx
-  - nginx.site
+
+salt.uggedal.com:
+  nginx_site:
+    present
+    - root: /var/www
 
 /var/www:
   file:
