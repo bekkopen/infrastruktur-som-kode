@@ -454,86 +454,21 @@ Deklarativt uavhengig av OS:
 # Puppet &mdash; konfigurere host og filer
 
     .ruby
-    node "puppet.uggedal.com" {
-      $root="/var/www"
+    $root="/var/www"
 
-      include nginx
+    include nginx
 
-      nginx::site { "puppet.uggedal.com":
-        root => $root,
-      }
-
-      file {
-        $root:
-          ensure => directory;
-
-        "${root}/index.html":
-          source => "puppet:///modules/hello/index.html",
-          require => File[$root];
-      }
+    nginx::site { "puppet.uggedal.com":
+      root => $root,
     }
 
----
+    file {
+      $root:
+        ensure => directory;
 
-.large
-
-# Puppet &mdash; nginx installasjon
-
-    .ruby
-    class nginx {
-      package { "nginx":
-        ensure => present
-      }
-
-      service { "nginx":
-        ensure => running,
-        enable => true,
-        require => Package["nginx"],
-      }
-
-      file { "/etc/nginx/sites-enabled/default":
-        ensure => absent,
-        notify => Service["nginx"],
-      }
-    }
-
----
-
-# Puppet &mdash; generisk nginx vhost
-
-    .ruby
-    define nginx::site($root) {
-      $hostname = $name
-
-      file {
-        "/etc/nginx/sites-available/${hostname}.conf":
-          content => template("nginx/site.conf.erb"),
-          require => Package["nginx"],
-          notify => Service["nginx"];
-
-        "/etc/nginx/sites-enabled/${hostname}.conf":
-          ensure => link,
-          target => "/etc/nginx/sites-available/${hostname}.conf",
-          require => File["/etc/nginx/sites-available/${hostname}.conf"],
-          notify => Service["nginx"];
-      }
-    }
-
----
-
-.large
-
-# Puppet &mdash; template
-
-    server {
-      listen 80;
-      server_name <%= hostname %>;
-
-      root <%= root %>;
-
-      access_log  /var/log/nginx/<%= hostname %>.access.log;
-
-      index  index.html;
+      "${root}/index.html":
+        source => "puppet:///modules/hello/index.html",
+        require => File[$root];
     }
 
 ---
@@ -541,20 +476,6 @@ Deklarativt uavhengig av OS:
 .middle.center.url
 
 # [puppet.uggedal.com](http://puppet.uggedal.com)
-
----
-
-.large
-
-# Chef &mdash; konfigurere host
-
-    .javascript
-    {
-      "run_list": [
-        "recipe[nginx]",
-        "recipe[hello]"
-      ]
-    }
 
 ---
 
@@ -578,65 +499,6 @@ Deklarativt uavhengig av OS:
 
 ---
 
-.large
-
-# Chef &mdash; nginx installasjon
-
-    .ruby
-    package "nginx"
-
-    service "nginx" do
-      supports :status => true, :restart => true
-      action [ :enable, :start ]
-    end
-
-    file "/etc/nginx/sites-enabled/default" do
-      action :delete
-      notifies :restart, resources(:service => "nginx")
-    end
-
----
-
-# Chef &mdash; generisk nginx vhost
-
-    .ruby
-    define :nginx_site, :root => "/dev/null" do
-
-      template "/etc/nginx/sites-available/#{params[:name]}.conf" do
-        source "site.conf.erb"
-        variables(
-          :hostname => params[:name],
-          :root => params[:root]
-        )
-        cookbook "nginx"
-      end
-
-      link "/etc/nginx/sites-enabled/#{params[:name]}.conf" do
-        to "/etc/nginx/sites-available/#{params[:name]}.conf"
-        notifies :restart, resources(:service => "nginx")
-      end
-
-    end
-
----
-
-.large
-
-# Chef &mdash; template
-
-    server {
-      listen 80;
-      server_name <%= @hostname %>;
-
-      root <%= @root %>;
-
-      access_log  /var/log/nginx/<%= @hostname %>.access.log;
-
-      index  index.html;
-    }
-
----
-
 .middle.center.url
 
 # [chef.uggedal.com](http://chef.uggedal.com)
@@ -645,22 +507,13 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Salt &mdash; konfigurasjon for host
+# Salt &mdash; konfigurere vhost og filer
 
     .django
-    base:
-      '*':
-        - nginx
-        - nginx.site
-        - hello
+    include:
+      - nginx
+      - nginx.site
 
----
-
-.large
-
-# Salt &mdash; konfigurere filer
-
-    .django
     /var/www:
       file:
         - directory
@@ -671,75 +524,6 @@ Deklarativt uavhengig av OS:
         - source: salt://hello/index.html
         - require:
           - file: /var/www
-
----
-
-.large
-
-# Salt &mdash; nginx installasjon
-
-    .django
-    nginx:
-      pkg:
-        - installed
-      service:
-        - running
-        - require:
-          - pkg: nginx
-      file:
-        - name: /etc/nginx/sites-enabled/default
-        - absent
-        - require:
-          - pkg: nginx
-
----
-
-# Salt &mdash; nginx vhost
-
-    .django
-    {% for hostname, root in [("salt.uggedal.com", "/var/www"),] %}
-    /etc/nginx/sites-available/{{ hostname }}.conf:
-      file:
-        - managed
-        - source: salt://nginx/site.conf
-        - template: jinja
-        - context: {
-          hostname: "{{ hostname }}",
-          root: "{{ root }}" }
-        - require:
-          - pkg: nginx
-
-    /etc/nginx/sites-enabled/{{ hostname }}.conf:
-      file:
-        - symlink
-        - target: /etc/nginx/sites-available/{{ hostname }}.conf
-        - require:
-          - file: /etc/nginx/sites-available/{{ hostname }}.conf
-
-    extend:
-      nginx:
-        service:
-          - watch:
-            - file: /etc/nginx/sites-enabled/{{ hostname }}.conf
-    {% endfor %}
-
----
-
-.large
-
-# Salt &mdash; template
-
-    .django
-    server {
-      listen 80;
-      server_name {{ hostname }};
-
-      root {{ root }};
-
-      access_log  /var/log/nginx/{{ hostname }}.access.log;
-
-      index  index.html;
-    }
 
 ---
 
