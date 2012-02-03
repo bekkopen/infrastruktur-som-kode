@@ -11,6 +11,6 @@ def present(name,
     site_available = __salt__['file.managed'](site_available_name,
                                               source=source,
                                               context=context,
-                                              __env__)
+                                              __env__=__env__)
 
     return site_available
