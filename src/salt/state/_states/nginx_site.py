@@ -1,6 +1,7 @@
 def present(name,
             root=None,
             source="salt://nginx/site.conf",
+            template="jinja",
             __env__='base'):
 
     ret = {'name': name, 'result': None, 'comment': '', 'changes': {}}
