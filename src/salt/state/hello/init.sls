@@ -1,3 +1,7 @@
+include:
+  - nginx
+  - nginx.site
+
 /var/www:
   file:
     - directory
