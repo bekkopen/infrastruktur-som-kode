@@ -3,7 +3,7 @@ include:
 
 salt.uggedal.com:
   nginx_site:
-    present
+    - present
     - root: /var/www
 
 /var/www:
