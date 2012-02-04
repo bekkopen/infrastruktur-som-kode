@@ -17,7 +17,6 @@ pip install salt
 
 if [ $# -ne 1 ]; then
   cat > /etc/salt/master << 'EOF'
-interface: 127.0.0.1
 file_roots:
   base:
     - /root/infrastruktur-som-kode/src/salt/state
