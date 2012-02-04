@@ -5,4 +5,6 @@ if [ -f /etc/salt/master ]; then
 fi
 pgrep salt-minion > /dev/null 2>&1 || salt-minion -d
 
-salt '*' state.highstate -t 60
+if [ -f /etc/salt/master ]; then
+  salt '*' state.highstate -t 60
+fi
