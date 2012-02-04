@@ -539,7 +539,7 @@ Deklarativt uavhengig av OS:
     include:
       - nginx
 
-    {{ nginx_site(grains["hostname"]["fqdn"], "/var/www") }}
+    {{ nginx_site(grains["fqdn"], "/var/www") }}
 
     /var/www:
       file:
@@ -550,7 +550,7 @@ Deklarativt uavhengig av OS:
         - managed
         - source: salt://hello/index.html
         - template: jinja
-        - context: { host: "{{ grains["hostname"]["host"] }}" }
+        - context: { host: "{{ grains["host"] }}" }
         - require:
           - file: /var/www
 
