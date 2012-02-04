@@ -1,7 +1,5 @@
-include:
-  - nginx
+{% macro nginx_site(hostname, root) %}
 
-{% for hostname, root in [("salt.uggedal.com", "/var/www"),] %}
 /etc/nginx/sites-available/{{ hostname }}.conf:
   file:
     - managed
@@ -25,4 +23,5 @@ extend:
     service:
       - watch:
         - file: /etc/nginx/sites-enabled/{{ hostname }}.conf
-{% endfor %}
+
+{% endmacro %}
