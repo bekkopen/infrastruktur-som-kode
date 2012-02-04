@@ -3,19 +3,25 @@
 set -e
 
 . ./../hostname.sh
-set_hostname "salt.uggedal.com"
+
+if [ $# -ne 1 ]; then
+  set_hostname "salt.uggedal.com"
+else
+  set_hostname "salt-${1}.uggedal.com"
+fi
 
 apt-get install -qyt wheezy cython python-zmq python-yaml python-crypto \
   python-m2crypto python-jinja2 msgpack-python python-pip
 
 pip install salt
 
-cat > /etc/salt/master << 'EOF'
+if [ $# -ne 1 ]; then
+  cat > /etc/salt/master << 'EOF'
 interface: 127.0.0.1
-auto_accept: True
 file_roots:
   base:
     - /root/infrastruktur-som-kode/src/salt/state
 EOF
+fi
 
-echo "master: localhost" > /etc/salt/minion
+echo "master: salt.uggedal.com" > /etc/salt/minion
