@@ -3,7 +3,7 @@
 include:
   - nginx
 
-{{ nginx_site(grains["hostname"]["fqdn"], "/var/www") }}
+{{ nginx_site(grains["fqdn"], "/var/www") }}
 
 /var/www:
   file:
@@ -14,6 +14,6 @@ include:
     - managed
     - source: salt://hello/index.html
     - template: jinja
-    - context: { host: "{{ grains["hostname"]["host"] }}" }
+    - context: { host: "{{ grains["host"] }}" }
     - require:
       - file: /var/www
