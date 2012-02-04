@@ -450,7 +450,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Puppet &mdash; konfigurere host og filer
+# Puppet &mdash; konfigurere nginx, vhost og filer
 
     .ruby
     $root="/var/www"
@@ -480,7 +480,7 @@ Deklarativt uavhengig av OS:
 
 .large
 
-# Chef &mdash; konfigurere vhost og filer
+# Chef &mdash; konfigurere nginx, vhost og filer
 
     .ruby
     nginx_site "chef.uggedal.com" do
@@ -504,9 +504,34 @@ Deklarativt uavhengig av OS:
 
 ---
 
+
+# Salt arkitektur
+
+    .django
+                            +--------------------+
+                            |                    |
+                            |  salt.uggedal.com  |
+                            |                    |
+                            |      (MASTER)      |
+                            |                    |
+                            +--V------V-------V--+
+                               |      |       |
+                _______________/      |       \_______________
+               /                      |                       \
+               |                      |                       |
+    +----------V---------+  +---------V----------+  +---------V----------+
+    |                    |  |                    |  |                    |
+    | salt-1.uggedal.com |  | salt-2.uggedal.com |  | salt-3.uggedal.com |
+    |                    |  |                    |  |                    |
+    |     (WEB-NODE)     |  |     (WEB-NODE)     |  |     (WEB-NODE)     |
+    |                    |  |                    |  |                    |
+    +--------------------+  +--------------------+  +--------------------+
+
+---
+
 .large
 
-# Salt &mdash; konfigurere vhost og filer
+# Salt &mdash; konfigurere nginx, vhost og filer
 
     .django
     {% from "nginx/site.sls" import nginx_site  %}
