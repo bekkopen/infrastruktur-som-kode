@@ -1,7 +1,7 @@
 {% from "nginx/site.sls" import nginx_site  %}
 
 include:
-  -nginx
+  - nginx
 
 {{ nginx_site("salt.uggedal.com", "/var/www") }}
 
