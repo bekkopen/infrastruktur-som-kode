@@ -20,12 +20,18 @@
         -webkit-filter: grayscale(1);
       }
 
+      .content > p,
+      .content > ul li,
+      .content > ol li {
+          font-size: 28px;
+      }
+
       .source {
         bottom: 12px;
+        font-size: 12px;
         left: 20px;
         opacity: .5;
         position: absolute;
-        font-size: 0.7em;
       }
 
       .source::before {
@@ -97,16 +103,44 @@
         font-style: normal;
         text-transform: none;
       }
-      blockquote.text-quote {
-	      font-style: italic;
-		  margin-top: 35px;
-		  margin-bottom: 10px;
-		  margin-left: 25px;
-		  padding-left: 15px;
-		  border-left: 3px solid #ccc;
+      blockquote {
+        margin-top: 35px;
+        margin-bottom: 10px;
+        margin-left: 0;
+        padding-left: 15px;
+        border-left: 3px solid #ccc;
       }
-      ul, li {
-          font-size: 28px;
+
+      blockquote p {
+        color: rgba(255, 255, 255, .7);
+        font-size: 24px;
+      }
+
+      blockquote p strong {
+        color: rgb(255, 255, 255);
+        font-weight: normal;
+      }
+
+      #slideshow .slide .content.cols.two .col {
+        width: 47.5%;
+      }
+
+      #slideshow .slide .content.cols .col {
+        margin-right: 5%;
+      }
+
+      #slideshow .slide .content.pushed.full .img {
+        bottom: 2em;
+      }
+
+      #slideshow .slide .content .circle {
+        display: table;
+        line-height: 1em;
+      }
+
+      #slideshow .slide .content .circle span {
+        display: table-cell;
+        vertical-align: middle;
       }
 
     </style>
@@ -131,11 +165,11 @@ Eivind Uggedal
 
 ---
 
-.pushed.greyscale
+.pushed.full.greyscale
 
 ![](images/hands.jpg)
 
-.circle.red.top-right[Henda i været!]
+.circle.red.top-right[<span>Henda i været!<span>]
 
 .source[http://flic.kr/p/5Z9g8a]
 
@@ -245,7 +279,8 @@ Eivind Uggedal
 
 # Deklarativ konfigurasjonsstyring
 
-<blockquote class="text-quote">
+<blockquote>
+
 Konfigurasjonsstyringsverktøy er et sett av mindre verktøy som lar deg beskrive 
 et oppsett av infrastruktur på en slik måte at konfigurasjonsverktøyet vil la deg
 gjenopprette det identiske oppsettet fra **ethvert kjent startpunkt, og til enhver
@@ -254,11 +289,12 @@ kompatibel infrastruktur**.
 Hvor et automatiseringsverktøy som scripting er **imperativt**, (gjør dette, 
 så gjør dette), så pleier konfigurasjonsstyringsverkøy å være **deklarative**.
 
-Med deklarativt oppsett, sier du for eksempel: **"Jeg har en server og den kjører
-MySQL databasen som denne brukeren."**, så vil konfigurasjonsstyringsverktøyet
+Med deklarativt oppsett, sier du for eksempel: **&ldquo;Jeg har en server og den kjører
+MySQL databasen som denne brukeren.&rdquo;**, så vil konfigurasjonsstyringsverktøyet
 finne ut alle steg som skal til for å få denne påstanden til å bli sann.
 
 &mdash; [Parafrasert, Jacob Kaplan-Moss]
+
 </blockquote>
 
 ---
@@ -267,24 +303,20 @@ finne ut alle steg som skal til for å få denne påstanden til å bli sann.
 
 # Deklarativ konfigurasjonsstyring
 
-* Deklarativ fremfor imperativ
-* Automatiserer og orkestrerer infrastruktur
-* Gjenskape et milj&oslash; fra forskjellige utgangspunkt
-
 <div class="col">
 Imperativt for Debian:
 
     .bash
     apt-get install vim
 
-    echo "set nocp" >> /etc/vim/vimrc
+    echo "set nocp" > /etc/vim/vimrc
 
 Imperativt for RedHat:
 
     .bash
     yum install vim
 
-    echo "set nocp" >> /etc/vim/vimrc
+    echo "set nocp" > /etc/vim/vimrc
 </div>
 
 <div class="col">
@@ -602,9 +634,13 @@ Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 
 # Slides og kode
 
+## Slide deck:
+
 <a href="http://bekkopen.github.com/infrastruktur-som-kode">
   bekkopen.github.com/infrastruktur-som-kode
 </a>
+
+## Komplett kode fra sammenligningene:
 
 <a href="https://github.com/bekkopen/infrastruktur-som-kode">
   github.com/bekkopen/infrastruktur-som-kode
@@ -612,11 +648,11 @@ Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 
 ---
 
-.pushed.greyscale
+.pushed.full
 
 ![](images/question.jpg)
 
-.circle.red.top-right[Sp&oslashrsm&aring;l?]
+.circle.red.top-right[<span>Sp&oslashrsm&aring;l?</span>]
 
 .source[http://flic.kr/p/ubG6g]
 
