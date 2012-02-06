@@ -1,17 +1,5 @@
 TID BUKT: 55min
 
-Vise sammenhengen med Orkestrering foer demo...
-Snu rekkefoelgen paa puppet / Chef eksemplene.
-tree modules...
-
-Visuell visning.
-
-Kutte puppet eller chef. Kutte kode?
-
-Provisjonere 5 servere med puppet/chef/salt?
-
-Ikke forklare saa mye hva som skal til.. bare kjoer det!
-
 AP#1: Eksempel fra nexus.
 
 Bruk... definisjon... deklarasjon
