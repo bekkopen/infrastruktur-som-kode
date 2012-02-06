@@ -1,3 +1,3 @@
 #!/bin/sh
 
-time chef-solo
+TIME=Time:\ %e time chef-solo
