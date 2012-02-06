@@ -443,26 +443,24 @@ Deklarativt uavhengig av OS:
 
 ---
 
+.large
+
 # Arkitektur
 
     .django
-        Puppet arkitektur (pull)
-        Chef arkitektur (pull)
-        Salt arkitektur (pull og push)
+         Puppet               Chef                 Salt
+         (pull)              (pull)           (pull og push)
 
-        TODO: draw
-
-    +----+
-    |    |
-    +----+
-
-    +----+
-    |    |
-    +----+
-
-    +----+
-    |    |
-    +----+
+          +---+               +---+               +---+
+          | M |               | M |               | M |
+          +---+               +---+               +---+
+            ↓                   ↓                   ↑
+       _____|_____         _____|_____         _____|_____
+      |     |     |       |     |     |       |     |     |
+      ↓     ↓     ↓       ↓     ↓     ↓       ↓     ↓     ↓  
+    .---. .---. .---.   .---. .---. .---.   .---. .---. .---.
+    | A | | A | | A |   | A | | A | | A |   | A | | A | | A |
+    `---´ `---´ `---´   `---´ `---´ `---´   `---´ `---´ `---´
 
 ---
 
