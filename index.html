@@ -443,6 +443,27 @@ Deklarativt uavhengig av OS:
 
 ---
 
+.large
+
+# Arkitektur
+
+    .django
+         Puppet               Chef                 Salt
+         (pull)              (pull)           (pull og push)
+
+          +---+               +---+               +---+
+          | M |               | M |               | M |
+          +---+               +---+               +---+
+            ↓                   ↓                   ↑
+       _____|_____         _____|_____         _____|_____
+      |     |     |       |     |     |       |     |     |
+      ↓     ↓     ↓       ↓     ↓     ↓       ↓     ↓     ↓  
+    .---. .---. .---.   .---. .---. .---.   .---. .---. .---.
+    | A | | A | | A |   | A | | A | | A |   | A | | A | | A |
+    `---´ `---´ `---´   `---´ `---´ `---´   `---´ `---´ `---´
+
+---
+
 .middle.center
 
 # Praktisk sammenligning av bruk
@@ -464,11 +485,11 @@ Deklarativt uavhengig av OS:
     .bash
     apt-get install nginx
 
+    rm /etc/nginx/sites-enabled/default
+
     vim /etc/nginx/sites-available/vhost.conf
 
     ln -s /etc/nginx/sites-{available,enabled}/manual.uggedal.com.conf
-
-    rm /etc/nginx/sites-enabled/default
 
     /etc/init.d/nginx restart
 
@@ -660,6 +681,16 @@ Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 
 ---
 
+.pushed.full
+
+![](images/question.jpg)
+
+.circle.red.top-right[<span>Sp&oslashrsm&aring;l?</span>]
+
+.source[http://flic.kr/p/ubG6g]
+
+---
+
 # Slides og kode
 
 ## Slide deck:
@@ -673,16 +704,6 @@ Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 <a href="https://github.com/bekkopen/infrastruktur-som-kode">
   github.com/bekkopen/infrastruktur-som-kode
 </a>
-
----
-
-.pushed.full
-
-![](images/question.jpg)
-
-.circle.red.top-right[<span>Sp&oslashrsm&aring;l?</span>]
-
-.source[http://flic.kr/p/ubG6g]
 
     </textarea>
     <div id="slideshow"></div>
