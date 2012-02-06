@@ -1,3 +1,3 @@
 #!/bin/sh
 
-chef-solo
+time chef-solo

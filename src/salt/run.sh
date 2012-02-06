@@ -6,5 +6,5 @@ fi
 pgrep salt-minion > /dev/null 2>&1 || salt-minion -d
 
 if [ -f /etc/salt/master ]; then
-  salt '*' state.highstate -t 60
+  time salt '*' state.highstate -t 60
 fi
