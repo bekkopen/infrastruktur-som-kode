@@ -230,10 +230,12 @@ Eivind Uggedal
 
 ![](images/timeline.png)
 
+
 ---
 
 # Behandle infrastruktur som kode
 
+* Egentlig ikke noe nytt
 * Versjonskontroll av konfigurasjon
 * Refactoring og kontinuerlig forbedring
 * Inkrementell/evolusjonær arkitektur
@@ -254,10 +256,9 @@ Eivind Uggedal
 
 # Og ikke minst&hellip;
 
-* Automatiserbar utrullingsplattform?
-* Nedetidfri utrulling?
-* Sømløs A/B-testing?
-* Er vårt miljøregime utdatert?
+* Nedetidfri utrulling
+* Sømløs A/B-testing
+* Automatiserbar utrullingsplattform / Kontinuerlige leveranser
 
 ---
 
@@ -607,37 +608,49 @@ Deklarativt uavhengig av OS:
 
 # AP#1: Spaghetti-konfigurasjon (på boks)
 
-Vårt største observerte anti-pattern er å prøve å putte alt for mye inn i konfigurasjonsstyringsverktøyet. 
+Veldig vanlig anti-pattern er å prøve å putte alt for mye inn i konfigurasjonsstyringsverktøyet. 
 
-Vi anbefaler å flytte så mye kompleksitet som mulig fra konfigurasjonsstyringsverkt&oslash;y til pakkesystemer (deb, rpm, ebuild, pkgsrc, pacman m.fl).
+Løsning?
 
-[FPM](https://github.com/jordansissel/fpm) (Effing Package Management) til redning!
+* Flytte så mye kompleksitet som mulig fra konfigurasjonsstyringsverkt&oslash;y til pakkesystemer (deb, rpm, ebuild, pkgsrc, pacman m.fl).
+* [FPM](https://github.com/jordansissel/fpm) (Effing Package Management) til redning!
 
 ---
 
 # AP#2: Ingen kontinuerlig integrasjon
 
-Et annet anti-pattern er å kjøre konfigurasjonsverktøyet manuelt og sporadisk. 
+Kjøre konfigurasjonsverktøyet manuelt og sporadisk. 
 
-Dette medfører ofte etterheng i systemer og miljøer. Folk vil etterhvert gå inn og "fikse" problemer manuelt. 
+* Etterheng i systemer og miljøer. 
+* Manuelle "fikser".
+* To problemer. 
 
-Løsning: Kjør ofte og kontinuerlig. Skriv over manuelle fikser raskt. Øv på å re-tanke en hel server og konfigurere den opp igjen i blandt.
+Løsning? 
+
+* Kjør ofte og kontinuerlig. 
+* Skriv over manuelle fikser raskt. 
+* Øv på reinstallasjon av hele servere i blandt.
 
 ---
 
 # AP#3: Kun manuell testing
 
-Det siste anti-pattern vi tar opp idag er symptomatisert av å **kun** bruke **manuelle** integrasjonstester (ende-til-ende).
-
-Vi anbefaler å jobbe aktivt med å automatisere integrasjonstestene. Det er et stykke å gå før dette er enkelt.
+Kun **manuelle** integrasjonstester (ende-til-ende).
 
 * Helsesjekker i applikasjoner/systemer
-* Røyktester
-* Monitoreringstester
-* Redusert logging og loggmonitoering
-* Test av image med byggservere og røyktester
+* Monitorering
+* Større fokus på logging
+* CI-server: bygg image og kjør tester
 
 Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
+
+---
+
+# Framtiden
+
+* Driftsutviklere (DevOps)
+* Agile ALM
+* Kontinuerlige leveranser
 
 ---
 
