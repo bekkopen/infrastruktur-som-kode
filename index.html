@@ -103,6 +103,11 @@
         font-style: normal;
         text-transform: none;
       }
+
+      #slideshow .slide .content.middle.center img {
+        max-width: 100%;
+      }
+
       blockquote {
         margin-top: 35px;
         margin-bottom: 10px;
@@ -195,6 +200,13 @@ Eivind Uggedal
 
 .middle.center.question
 
+# Kunde, Forretningsanalyst, Prosjektleder, IT-sjef?
+
+
+---
+
+.middle.center.question
+
 # Deployer du til skyen?
 
 ---
@@ -216,7 +228,7 @@ Eivind Uggedal
 * Infrastruktur som kode
 * Deklarativ konfigurasjonsstyring 
 * En praktisk demonstrasjon 
-* Anti-patterns og framtiden.
+* Anti-patterns og framtiden
 
 ---
 
@@ -236,6 +248,8 @@ Eivind Uggedal
 
 ![](images/tugofwar.jpg)
 
+.circle.yellow.top-right[<span>Drift vs. utvikling<span>]
+
 .source[http://flic.kr/p/a47pPt]
 
 ---
@@ -252,10 +266,9 @@ Eivind Uggedal
 
 # (Noen) forretningsverdier
 
+* Evolusjonær/inkrementell infrastruktur
+* Økt uavhengighet
 * Reproduserbar infrastruktur
-* Evolusjonær infrastruktur
-* Øke uavhengighet til infrastruktur
-* Oversikt
 
 ---
 
@@ -290,8 +303,7 @@ Eivind Uggedal
 * Alle typiske konfigurasjonsfiler
 * Som lar deg uttrykke avhengigheter:
   * Innenfor et system (én maskin)
-  * Mellom systemer (maskiner)
-  * Mellom maskiner og systemers tjenester
+  * Mellom systemer (maskiner) og deres tjenester
 * Håndtere endringer i infrastruktur i sanntid
 
 ---
@@ -360,11 +372,11 @@ Deklarativt uavhengig av OS:
     <th>
       &nbsp;
     <th>
-      Puppet
+      [Puppet](https://github.com/puppetlabs/puppet)
     <th>
-      Chef
+      [Chef](https://github.com/opscode/chef)
     <th>
-      Salt
+      [Salt](https://github.com/saltstack/salt)
   <tr>
     <td>
       Klient/tjener
@@ -684,7 +696,7 @@ Mye arbeide rundt dette, raskt modnende.
 # Framtiden
 
 * Driftsutviklere (DevOps)
-* Kontinuerlige leveranser (CD) - (Agile ALM)
+* Kontinuerlige leveranser (CD) &mdash; (Agile ALM)
 
 ---
 
