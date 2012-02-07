@@ -230,18 +230,23 @@ Eivind Uggedal
 
 ![](images/timeline.png)
 
+---
+
+.middle.center
+
+![](images/tugofwar.jpg)
+
+.source[http://flic.kr/p/a47pPt]
 
 ---
 
-# Behandle infrastruktur som kode
+# Infrastruktur som kode
 
-* Egentlig ikke noe nytt
-* Versjonskontroll av konfigurasjon
-* Refactoring og kontinuerlig forbedring
-* Inkrementell/evolusjonær arkitektur
-* Test-drevet design
-* Kjørbar og oppdatert dokumentasjon
-* "Ren kode" for drift
+* Skjøtte infrastruktur som kode
+* Versjonskontroll
+* Refactoring
+* Testing og testbar design
+* Kontinuerlig forbedring
 
 ---
 
@@ -249,16 +254,18 @@ Eivind Uggedal
 
 * Reproduserbar infrastruktur
 * Evolusjonær infrastruktur
-* Økt uavhengighet til infrastruktur
-* Enklere oversikt over miljøer
+* Øke uavhengighet til infrastruktur
+* Oversikt
 
 ---
 
 # Og ikke minst&hellip;
 
+* Kjørbar og oppdatert dokumentasjon
+* "Ren kode" for drift
 * Nedetidfri utrulling
 * Sømløs A/B-testing
-* Automatiserbar utrullingsplattform / Kontinuerlige leveranser
+* Automatiserbar utrullingsplattform
 
 ---
 
@@ -432,6 +439,15 @@ Deklarativt uavhengig av OS:
       Python, Salt, &Oslash;MQ
   <tr>
     <td>
+      OSS Lisens
+    <td>
+      Apache
+    <td>
+      Apache
+    <td>
+      Apache
+  <tr>
+    <td>
       Utbredelse
     <td>
       Stor
@@ -440,6 +456,27 @@ Deklarativt uavhengig av OS:
     <td>
       Liten
 </table>
+
+---
+
+.large
+
+# Arkitektur
+
+    .django
+         Puppet               Chef                 Salt
+         (pull)              (pull)           (pull og push)
+
+          +---+               +---+               +---+
+          | M |               | M |               | M |
+          +---+               +---+               +---+
+            ↓                   ↓                   ↑
+       _____|_____         _____|_____         _____|_____
+      |     |     |       |     |     |       |     |     |
+      ↓     ↓     ↓       ↓     ↓     ↓       ↓     ↓     ↓  
+    .---. .---. .---.   .---. .---. .---.   .---. .---. .---.
+    | A | | A | | A |   | A | | A | | A |   | A | | A | | A |
+    `---´ `---´ `---´   `---´ `---´ `---´   `---´ `---´ `---´
 
 ---
 
@@ -464,11 +501,11 @@ Deklarativt uavhengig av OS:
     .bash
     apt-get install nginx
 
+    rm /etc/nginx/sites-enabled/default
+
     vim /etc/nginx/sites-available/vhost.conf
 
     ln -s /etc/nginx/sites-{available,enabled}/manual.uggedal.com.conf
-
-    rm /etc/nginx/sites-enabled/default
 
     /etc/init.d/nginx restart
 
@@ -622,14 +659,13 @@ Løsning?
 Kjøre konfigurasjonsverktøyet manuelt og sporadisk. 
 
 * Etterheng i systemer og miljøer. 
-* Manuelle "fikser".
-* To problemer. 
+* Manuelle "fikser" - configuration wars.
 
 Løsning? 
 
 * Kjør ofte og kontinuerlig. 
-* Skriv over manuelle fikser raskt. 
 * Øv på reinstallasjon av hele servere i blandt.
+* Hvis du må debugge, gjør det i test og commit.
 
 ---
 
@@ -637,26 +673,34 @@ Løsning?
 
 Kun **manuelle** integrasjonstester (ende-til-ende).
 
-* Helsesjekker i applikasjoner/systemer
-* Monitorering
-* Større fokus på logging
-* CI-server: bygg image og kjør tester
+* Helsesjekker
+* Monitorering og logging
+* CI-integrasjon (byggserver)
 
-Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
+Mye arbeide rundt dette, raskt modnende.
 
 ---
 
 # Framtiden
 
 * Driftsutviklere (DevOps)
-* Agile ALM
-* Kontinuerlige leveranser
+* Kontinuerlige leveranser (CD) - (Agile ALM)
 
 ---
 
 .middle.center
 
 ![](images/puppet-indeed.png)
+
+---
+
+.pushed.full
+
+![](images/question.jpg)
+
+.circle.red.top-right[<span>Sp&oslashrsm&aring;l?</span>]
+
+.source[http://flic.kr/p/ubG6g]
 
 ---
 
@@ -673,16 +717,6 @@ Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
 <a href="https://github.com/bekkopen/infrastruktur-som-kode">
   github.com/bekkopen/infrastruktur-som-kode
 </a>
-
----
-
-.pushed.full
-
-![](images/question.jpg)
-
-.circle.red.top-right[<span>Sp&oslashrsm&aring;l?</span>]
-
-.source[http://flic.kr/p/ubG6g]
 
     </textarea>
     <div id="slideshow"></div>
