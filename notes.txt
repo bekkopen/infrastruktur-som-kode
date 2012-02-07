@@ -10,3 +10,5 @@ Bruk... definisjon... deklarasjon
 * Spesifisere moduler til ulike grupper
 * Spesifisere bruk av grupper og moduler paa servere og systemer
 * Diagram: spesialisert
+
+http://flic.kr/p/a47pPT
