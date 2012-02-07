@@ -230,18 +230,25 @@ Eivind Uggedal
 
 ![](images/timeline.png)
 
+---
+
+.middle.center
+
+![](images/tugofwar.jpg)
+
+.circle.yellow.top-right[<span>Drift vs. utvikling<span>]
+
+.source[http://flic.kr/p/a47pPt]
 
 ---
 
-# Behandle infrastruktur som kode
+# Infrastruktur som kode
 
-* Egentlig ikke noe nytt
-* Versjonskontroll av konfigurasjon
-* Refactoring og kontinuerlig forbedring
-* Inkrementell/evolusjonær arkitektur
-* Test-drevet design
-* Kjørbar og oppdatert dokumentasjon
-* "Ren kode" for drift
+* Behandle infrastruktur &mdash; som kode
+* Versjonskontroll
+* Refactoring
+* Testing og testbar design
+* Kontinuerlig forbedring
 
 ---
 
@@ -249,16 +256,18 @@ Eivind Uggedal
 
 * Reproduserbar infrastruktur
 * Evolusjonær infrastruktur
-* Økt uavhengighet til infrastruktur
-* Enklere oversikt over miljøer
+* Øke uavhengighet til infrastruktur
+* Oversikt
 
 ---
 
 # Og ikke minst&hellip;
 
+* Kjørbar og oppdatert dokumentasjon
+* &ldquo;Ren kode&rdquo; for drift
 * Nedetidfri utrulling
 * Sømløs A/B-testing
-* Automatiserbar utrullingsplattform / Kontinuerlige leveranser
+* Automatiserbar utrullingsplattform
 
 ---
 
@@ -652,14 +661,13 @@ Løsning?
 Kjøre konfigurasjonsverktøyet manuelt og sporadisk. 
 
 * Etterheng i systemer og miljøer. 
-* Manuelle "fikser".
-* To problemer. 
+* Manuelle "fikser" - configuration wars.
 
 Løsning? 
 
 * Kjør ofte og kontinuerlig. 
-* Skriv over manuelle fikser raskt. 
 * Øv på reinstallasjon av hele servere i blandt.
+* Hvis du må debugge, gjør det i test og commit.
 
 ---
 
@@ -667,20 +675,18 @@ Løsning?
 
 Kun **manuelle** integrasjonstester (ende-til-ende).
 
-* Helsesjekker i applikasjoner/systemer
-* Monitorering
-* Større fokus på logging
-* CI-server: bygg image og kjør tester
+* Helsesjekker
+* Monitorering og logging
+* CI-integrasjon (byggserver)
 
-Mye arbeide rundt dette, vil modnes raskt, framtiden er lys.
+Mye arbeide rundt dette, raskt modnende.
 
 ---
 
 # Framtiden
 
 * Driftsutviklere (DevOps)
-* Agile ALM
-* Kontinuerlige leveranser
+* Kontinuerlige leveranser (CD) &mdash; (Agile ALM)
 
 ---
 
